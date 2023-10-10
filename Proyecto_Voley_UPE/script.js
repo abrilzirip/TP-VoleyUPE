@@ -93,3 +93,39 @@ document.addEventListener('DOMContentLoaded', function () {
             comentarioForm.reset();
         });
 });  
+
+
+
+// Filtrar las filas de la tabla según la competencia seleccionada
+
+mostrarRanking(); //Llamo a la funcion para que se ejecute
+
+
+function mostrarRanking(){
+    function filtrarPorTipoCompetencia(tipoCompetencia) {
+        let filas = document.querySelectorAll('#MiTabla tbody tr');
+    
+        filas.forEach(fila => {
+            let tipo = fila.getAttribute('data-tipo-competencia');
+    
+            if (tipoCompetencia === 'todas' || tipo === tipoCompetencia) {
+                fila.style.display = '';
+            } else {
+                fila.style.display = 'none';
+            }
+        });
+    }
+    
+    // Obtener el elemento select para el filtro de tipo de competencia
+    let filtroTipoCompetencia = document.getElementById('tipoCompetencia');
+    
+    // Agregar un evento de cambio al select
+    filtroTipoCompetencia.addEventListener('change', () => {
+        let tipoSeleccionado = filtroTipoCompetencia.value;
+        filtrarPorTipoCompetencia(tipoSeleccionado);
+    });
+    
+    // Inicializar el filtro mostrando todos los tipos de competencia
+    filtrarPorTipoCompetencia('todas');
+}
+

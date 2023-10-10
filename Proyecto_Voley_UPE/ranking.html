@@ -24,10 +24,22 @@
         <p>El ranking universitario más actualizado con los equipos nacionales de voleibol masculino.</p>
     </div>
 
+
+
     <div class="contenedor">
         <p>POSICIONES - RANKING NACIONAL UNIVERSITARIO VOLEIBOL</p>
-        <table class="table ranking" id="MiTabla">
-            <thead>
+
+        <div class="filtros">
+            <label for="tipoCompetencia">Seleccionar Competencia:</label>
+            <select id="tipoCompetencia" class="form-control">
+                <option value="todas">Todas</option>
+                <option value="liga">Liga Nacional LIVONA (Liga Voleibol Nacional)</option>
+                <option value="copa">Copa Nacional JUAR (COPA Juenos Universiotarios Argentinos)</option>
+            </select>
+        </div><br>
+
+        <table class="table table-responsive text-center" id="MiTabla">
+            <thead class="table-dark">
                 <tr>
                     <th>Posición</th>
                     <th>Equipo</th>
@@ -35,52 +47,52 @@
                 </tr>
             </thead>
             <tbody>
-                <tr>
+                <tr data-tipo-competencia="liga">
                     <td>1</td>
                     <td>UPE</td>
                     <td>25</td>
                 </tr>
-                <tr>
+                <tr data-tipo-competencia="liga">
                     <td>2</td>
                     <td>UBA</td>
                     <td>22</td>
                 </tr>
-                <tr>
+                <tr data-tipo-competencia="liga">
                     <td>3</td>
                     <td>UTN</td>
                     <td>18</td>
                 </tr>
-                <tr>
+                <tr data-tipo-competencia="liga">
                     <td>4</td>
                     <td>UNLAM</td>
                     <td>15</td>
                 </tr>
-                <tr>
+                <tr data-tipo-competencia="copa">
                     <td>5</td>
                     <td>UNAB</td>
                     <td>12</td>
                 </tr>
-                <tr>
+                <tr data-tipo-competencia="liga">
                     <td>6</td>
                     <td>UTN</td>
                     <td>10</td>
                 </tr>
-                <tr>
+                <tr data-tipo-competencia="liga">
                     <td>7</td>
                     <td>UNAJ</td>
                     <td>9</td>
                 </tr>
-                <tr>
+                <tr data-tipo-competencia="copa">
                     <td>8</td>
                     <td>UNQUI</td>
                     <td>7</td>
                 </tr>
-                <tr>
+                <tr data-tipo-competencia="copa">
                     <td>9</td>
                     <td>UNC</td>
                     <td>5</td>
                 </tr>
-                <tr>
+                <tr data-tipo-competencia="copa">
                     <td>10</td>
                     <td>UNLZ</td>
                     <td>3</td>
@@ -90,7 +102,9 @@
     </div>
     
 
-    <!-- Incluyo el footer utilizando JavaScript -->
-    <div id="footer-container"></div>
+    <footer>
+        <!-- Incluyo el footer utilizando JavaScript -->
+        <div id="footer-container"></div>
+    </footer>
 </body>
 </html>
