@@ -22,25 +22,25 @@
                 </div>
 
                   <!-- Modal body -->
-                <form action="">
+                <form action="../backend/registrarUsuario.php" method = "post">
                         <div class="modal-body">
                             <label for="email">Ingresar Correo:</label>
-                            <input type="email" class="form-control" id="email" required placeholder="Ingresar email" name="email">
+                            <input type="email" class="form-control" id="email" name = 'email' required placeholder="Ingresar email">
                         </div>
 
                         <div class="modal-body">
                             <label for="contraseña">Contraseña:</label>
-                            <input type="password" required class="form-control" id="contraseña" placeholder="contraseña" name="contraseña">
+                            <input type="password" required class="form-control" id="contraseña" name="contraseña" required placeholder="contraseña">
                         </div>
 
                         <div class="modal-body">
                             <label for="edad">Fecha de Nacimiento:</label>
-                            <input type="date" required class="form-control" id="edad" placeholder="edad" name="edad">
+                            <input type="date" required class="form-control" id="edad" placeholder="edad" name="fecha_edad">
                         </div>
 
                         <div class="modal-footer">
                             <button type="button" class="btn btn-danger" data-bs-dismiss="modal">Cerrar</button>
-                            <button type="submit" class="btn btn-primary" id="enviar">Enviar</button>
+                            <button type="submit" class="btn btn-primary" id="enviar" name = "enviar">Enviar</button>
                         </div>
                 </form>
             </div>
@@ -57,15 +57,15 @@
                 </div>
 
                   <!-- Modal body -->
-                <form action="">
+                <form action="../backend/iniciarSesionUsuario.php" method="post">
                         <div class="modal-body">
-                            <label for="mail">Ingresar Correo:</label>
-                            <input type="email" class="form-control" id="mail" required placeholder="Ingresar email" name="mail">
+                            <label for="correo">Ingresar Correo:</label>
+                            <input type="correo" class="form-control" id="correo" required placeholder="Ingresar email" name="correo">
                         </div>
 
                         <div class="modal-body">
-                            <label for="password">Contraseña:</label>
-                            <input type="password" required class="form-control" id="password" placeholder="contraseña" name="password">
+                            <label for="contraseña">Contraseña:</label>
+                            <input type="password" required class="form-control" id="contraseña" placeholder="contraseña" name="contraseña">
                         </div>
 
                         <div class="modal-footer">

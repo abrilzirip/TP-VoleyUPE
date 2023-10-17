@@ -247,3 +247,8 @@ h1 {
     padding: 10px; /* Espaciado interno */
     width: 100%; /* Ancho del título al 100% del contenedor */
 }
+
+.cerrarSesion{
+    text-decoration: none !important; 
+    color: white !important; 
+}

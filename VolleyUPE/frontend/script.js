@@ -25,7 +25,7 @@ document.addEventListener('DOMContentLoaded', function () {
 
 /////////////////// Cargar la barra de navegacion desde navbar.html utilizando JavaScript
 let navbarContainer = document.getElementById('navbar-container');
-fetch('navbar.html')
+fetch('navbar.php')
     .then(response => {
         // Verificar si la respuesta es exitosa
         if (!response.ok) {
@@ -128,4 +128,7 @@ function mostrarRanking(){
     // Inicializar el filtro mostrando todos los tipos de competencia
     filtrarPorTipoCompetencia('todas');
 }
+
+//////////////////////////////////////
+//Logica Validacion usuario
 
