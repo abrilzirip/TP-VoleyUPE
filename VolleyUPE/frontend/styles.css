@@ -248,6 +248,8 @@ h1 {
     width: 100%; /* Ancho del título al 100% del contenedor */
 }
 
+
+/* Estilo para el boton de Cierre de Sesion*/
 .cerrarSesion{
     text-decoration: none !important; 
     color: white !important; 

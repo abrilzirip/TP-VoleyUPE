@@ -7,8 +7,9 @@ if($_SERVER["REQUEST_METHOD"] == "POST")
     $correo = $_POST["email"];
     $password = $_POST["contraseña"];
     $fecha_edad = $_POST["fecha_edad"];
+    $perfil = 3;
     
-    $usuario = new Usuario($correo, $password,$fecha_edad);
+    $usuario = new Usuario($correo, $password,$fecha_edad, $perfil);
 
    $resultado = $usuario->registrar();
    if($resultado == true)
@@ -18,3 +19,5 @@ if($_SERVER["REQUEST_METHOD"] == "POST")
    }
 }
 ?>
+
+

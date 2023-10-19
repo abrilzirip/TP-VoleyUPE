@@ -7,7 +7,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $password = $_POST["contraseña"];
 
     // Realiza una consulta para verificar si el usuario y la contraseña coinciden
-    $usuario = new Usuario("", "", "");
+    $usuario = new Usuario("", "", "", "");
     $resultado = $usuario->consultar($correo, $password);
 
     if ($resultado != null) {

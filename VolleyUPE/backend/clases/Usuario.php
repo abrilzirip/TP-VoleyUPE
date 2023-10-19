@@ -5,11 +5,12 @@ class Usuario
     private $correo;
     private $password;
     private $fechaNacimiento;
+    private $perfil;
     private $conexion;
     
-    public function __construct($correo, $password,$fechaNacimiento)
+    public function __construct($correo, $password,$fechaNacimiento,$perfil)
     {
-
+        $this->perfil = $perfil;
         $this->correo = $correo;
         $this->password = $password;
         $this->fechaNacimiento = $fechaNacimiento;
@@ -24,7 +25,7 @@ class Usuario
     }
     public function registrar()
     {
-       $sql = "INSERT INTO usuario(correo,password,fecha_nacimiento) VALUES('$this->correo','$this->password','$this->fechaNacimiento')";
+       $sql = "INSERT INTO usuario(correo,password,fecha_nacimiento, id_perfil) VALUES('$this->correo','$this->password','$this->fechaNacimiento','$this->perfil')";
        if($this->conexion->query($sql))
        {
         return true;
