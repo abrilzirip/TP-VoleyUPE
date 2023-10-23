@@ -18,8 +18,8 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         header('Location: ../frontend/index.html');
         exit();
     } else {
-        // Las credenciales son incorrectas, muestra un mensaje de error
-        echo "Usuario o contraseña incorrectos. Por favor, inténtalo de nuevo.";
+        // Las credenciales son incorrectas
+        header('Location: ../frontend/index.html');
     }
 }
 ?>

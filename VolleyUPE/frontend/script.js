@@ -42,7 +42,9 @@ fetch('navbar.php')
         // Manejar errores si ocurren
         console.error('Error al cargar la barra de navegación:', error);
     });
+/////////////////////////
 
+    
 /////////////////// Cargar el pie de pagina desde footer.html utilizando JavaScript
 let footerContainer = document.getElementById('footer-container');
 fetch('footer.html')

@@ -36,7 +36,7 @@
                             <a class="nav-link" href="ranking.html">Tabla de Puntos</a>
                         </li>
                         <li class="nav-item" id="Noticias">
-                            <a class="nav-link" href="noticias.html">Noticias</a>
+                            <a class="nav-link" href="noticias.php">Noticias</a>
                         </li>
                         <li class="nav-item" id="Partidos">
                             <a class="nav-link" href="partido.html">Partidos</a>

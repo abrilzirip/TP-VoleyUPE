@@ -5,6 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Modales</title>
     <script defer src="script.js"></script>
+    <script defer src="scriptValidacion.js"></script>
     <link rel="stylesheet" href="styles.css">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/css/bootstrap.min.css" rel="stylesheet">
@@ -22,26 +23,29 @@
                 </div>
 
                   <!-- Modal body -->
-                <form action="../backend/registrarUsuario.php" method = "post">
-                        <div class="modal-body">
-                            <label for="email">Ingresar Correo:</label>
-                            <input type="email" class="form-control" id="email" name = 'email' required placeholder="Ingresar email">
-                        </div>
-
-                        <div class="modal-body">
-                            <label for="contraseña">Contraseña:</label>
-                            <input type="password" required class="form-control" id="contraseña" name="contraseña" required placeholder="contraseña">
-                        </div>
-
-                        <div class="modal-body">
-                            <label for="edad">Fecha de Nacimiento:</label>
-                            <input type="date" required class="form-control" id="edad" placeholder="edad" name="fecha_edad">
-                        </div>
-
-                        <div class="modal-footer">
-                            <button type="button" class="btn btn-danger" data-bs-dismiss="modal">Cerrar</button>
-                            <button type="submit" class="btn btn-primary" id="enviar" name = "enviar">Enviar</button>
-                        </div>
+                  <form action="../backend/registrarUsuario.php" method="post" id="registrarUsuario">
+    
+                    <div class="modal-body">
+                        <label for="email">Ingresar Correo:</label>
+                        <input type="email" class="form-control" id="email" name='email' required placeholder="Ingresar email">
+                        <div class="invalid-feedback">Correo inválido. Utilice un formato válido.</div>
+                    </div>
+    
+                    <div class="modal-body">
+                        <label for="passwordRegistro">Contraseña:</label>
+                        <input type="password" required class="form-control" id="passwordRegistro" name="passwordRegistro" required placeholder="Contraseña">
+                    </div>
+    
+                    <div class="modal-body">
+                        <label for="edad">Fecha de Nacimiento:</label>
+                        <input type="date" required class="form-control" id="fecha_edad" name="fecha_edad">
+                        <div class="invalid-feedback">Fecha de nacimiento inválida.</div>
+                    </div>
+    
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-danger" data-bs-dismiss="modal">Cerrar</button>
+                        <button type="submit" class="btn btn-primary" id="registrarme" name="registrarme">Registrarme</button>
+                    </div>
                 </form>
             </div>
         </div>
@@ -76,5 +80,9 @@
             </div>
         </div>
     </div>
+
+
+
+
 </body>
 </html>
