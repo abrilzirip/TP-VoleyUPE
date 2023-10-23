@@ -1,23 +1,25 @@
 <?php
-    include_once('../backend/clases/Usuario.php');
+    require_once('../backend/clases/Usuario.php');
 
     session_start();
 
-    // Inicializa las variables
+    // inicializo las variables en ''
     $correoUsuario = $passwordUsuario = $fechaNacimientoUsuario = $idPerfilUsuario = '';
+    // aca me conecto a la bbdd
+    $conexion = new mysqli("localhost", "root", "", "bbdd_voleyup");
+    
+    if ($conexion->connect_error) {
+        die("Error en la conexión a la base de datos: " . $conexion->connect_error);
+    }
+
     
     if (isset($_SESSION['usuario'])) {
-        // Obtén el correo del usuario desde la sesión
+        // tomo el correo del usuario desde la sesion iniciada
         $correoUsuario = $_SESSION['usuario'];
     
-        // Realiza una consulta a la base de datos para obtener los datos del usuario
-        $conexion = new mysqli("localhost", "root", "", "bbdd_voleyup");
+
     
-        if ($conexion->connect_error) {
-            die("Error en la conexión a la base de datos: " . $conexion->connect_error);
-        }
-    
-        $sql = "SELECT * FROM usuario WHERE correo = '$correoUsuario'";
+        $sql = "SELECT * FROM usuario WHERE correo = '$correoUsuario'"; //consulta para obtener el usuario
         $resultado = $conexion->query($sql);
     
         if ($resultado->num_rows > 0) {
@@ -31,28 +33,19 @@
             echo "Usuario no encontrado en la base de datos.";
         }
     
-        $conexion->close();
     } else {
         // El usuario no ha iniciado sesión
-        // Aquí puedes manejar este caso, por ejemplo, mostrando un mensaje de error o redirigiendo al usuario.
+        // mostrar mensaje de error a futuro*
     }
     
-    // Luego, puedes usar los valores que obtuviste de la base de datos
+    //uso los valores que obtuve de la bbdd
     $usuario = new Usuario($correoUsuario, $passwordUsuario, $fechaNacimientoUsuario, $idPerfilUsuario);
     $tipoUsuario = $usuario->validarRolUsuario();
     
-    // Aquí ya puedes usar la variable $tipoUsuario
-
-    // Realiza la conexión a la base de datos y verifica la conexión (deberías tener un código de conexión similar al que usaste en otras partes de tu aplicación)
-    $conexion = new mysqli("localhost", "root", "", "bbdd_voleyup");
-
-    if ($conexion->connect_error) {
-        die("Error en la conexión a la base de datos: " . $conexion->connect_error);
-    }
 
     // Realiza una consulta para obtener los datos de la noticia desde la base de datos
     $sql = "SELECT titulo, descripcion FROM noticia WHERE id = ?"; // Reemplaza 'id' por el nombre de tu columna de identificación
-    $idNoticia = 2; // Reemplaza esto por el ID de la noticia que deseas mostrar
+    $idNoticia = 2; // reemplazo el valor por el ID de la noticia que deseo mostrar
     $stmt = $conexion->prepare($sql);
     $stmt->bind_param("i", $idNoticia); // "i" indica que es un valor entero
 
@@ -60,7 +53,7 @@
         $stmt->bind_result($titulo, $parrafo);
         $stmt->fetch();
     }
-
+    $conexion->close(); //cierro la conexion a la bbdd
 
 ?>
 
@@ -69,7 +62,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>La UPE presente - JUAR 2023</title>
+    <title>Noticia 2</title>
     <script defer src="script.js"></script>
     <link rel="stylesheet" href="styles.css">
     <link rel="stylesheet" href="stylesLink.css">
@@ -85,9 +78,8 @@
 
     <!-- Modales de inicio de sesion y registro, los incluyo ocn javascript -->
     <div id="modal-container"></div>
-        <!-- Botón de edición para administradores -->
 
-        <div class="text-center"> <!-- Centro el contenido -->
+        <div class="text-center"> 
 
         <img class="imagen img-fluid" src="./imagenes/jupla.jpg" alt="jupla" style="width: 70%; height: 100%; padding-top: 10%;">
             <?php
@@ -95,7 +87,7 @@
                     echo '<a href="editarNoticia.php"  class="btn btn-primary">Editar Noticia</a>';
                 }
             ?>
-            <h3><?php echo $titulo; ?></h3>
+            <h3><?php echo $titulo; ?></h3> <!-- Acá solamente imprimo en la pagina los valores que obtuve de la tabla de mi BBDD (el titulo y el parrafo de la noticia que exista en la bbdd) -->
             <p class="text-white"><?php echo $parrafo; ?></p>
             <img class="imagen img-fluid" src="./imagenes/playa.jpg" alt="playa" style="width: 70%; height: 100%;">
         </div>

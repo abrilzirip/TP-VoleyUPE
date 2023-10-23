@@ -1,23 +1,21 @@
 <?php
-    include_once('../backend/clases/Usuario.php');
+    require_once('../backend/clases/Usuario.php');
 
     session_start();
-
-    // Inicializa las variables
+    // inicializo las variables en ''
     $correoUsuario = $passwordUsuario = $fechaNacimientoUsuario = $idPerfilUsuario = '';
+    // aca me conecto a la bbdd
+    $conexion = new mysqli("localhost", "root", "", "bbdd_voleyup");
+    
+    if ($conexion->connect_error) {
+        die("Error en la conexión a la base de datos: " . $conexion->connect_error);
+    }
     
     if (isset($_SESSION['usuario'])) {
-        // Obtén el correo del usuario desde la sesión
+        // tomo el correo del usuario desde la sesion iniciada
         $correoUsuario = $_SESSION['usuario'];
     
-        // Realiza una consulta a la base de datos para obtener los datos del usuario
-        $conexion = new mysqli("localhost", "root", "", "bbdd_voleyup");
-    
-        if ($conexion->connect_error) {
-            die("Error en la conexión a la base de datos: " . $conexion->connect_error);
-        }
-    
-        $sql = "SELECT * FROM usuario WHERE correo = '$correoUsuario'";
+        $sql = "SELECT * FROM usuario WHERE correo = '$correoUsuario'"; //consulta para obtener el usuario
         $resultado = $conexion->query($sql);
     
         if ($resultado->num_rows > 0) {
@@ -31,36 +29,27 @@
             echo "Usuario no encontrado en la base de datos.";
         }
     
-        $conexion->close();
     } else {
         // El usuario no ha iniciado sesión
-        // Aquí puedes manejar este caso, por ejemplo, mostrando un mensaje de error o redirigiendo al usuario.
+        // mostrar mensaje de error a futuro*
     }
     
-    // Luego, puedes usar los valores que obtuviste de la base de datos
+    //uso los valores que obtuve de la bbdd
     $usuario = new Usuario($correoUsuario, $passwordUsuario, $fechaNacimientoUsuario, $idPerfilUsuario);
-    $tipoUsuario = $usuario->validarRolUsuario();
+    $tipoUsuario = $usuario->validarRolUsuario(); //valido que el tipo de usuario sea administrador para mostrar en la pagina el boton para editar la noticia
     
-    // Aquí ya puedes usar la variable $tipoUsuario
-
-    // Realiza la conexión a la base de datos y verifica la conexión (deberías tener un código de conexión similar al que usaste en otras partes de tu aplicación)
-    $conexion = new mysqli("localhost", "root", "", "bbdd_voleyup");
-
-    if ($conexion->connect_error) {
-        die("Error en la conexión a la base de datos: " . $conexion->connect_error);
-    }
 
     // Realiza una consulta para obtener los datos de la noticia desde la base de datos
     $sql = "SELECT titulo, descripcion FROM noticia WHERE id = ?"; // Reemplaza 'id' por el nombre de tu columna de identificación
-    $idNoticia = 1; // Reemplaza esto por el ID de la noticia que deseas mostrar
+    $idNoticia = 1; // reemplazo el valor por el ID de la noticia que deseo mostrar
     $stmt = $conexion->prepare($sql);
     $stmt->bind_param("i", $idNoticia); // "i" indica que es un valor entero
 
     if ($stmt->execute()) {
-        $stmt->bind_result($titulo, $parrafo);
+        $stmt->bind_result($titulo, $parrafo); //las variables titulo y parrafo  tienen los valores de titulo y descripcion de la noticia q obtuve de la bbdd
         $stmt->fetch();
     }
-
+    $conexion->close(); //cierro la conexion a la bbdd
 
 ?>
 
@@ -85,14 +74,12 @@
 
     <!-- Modales de inicio de sesion y registro, los incluyo ocn javascript -->
     <div id="modal-container"></div>
-        <!-- Botón de edición para administradores -->
 
-        <div class="text-center"> <!-- Centro el contenido -->
-
+        <div class="text-center"> 
         <img class="imagen img-fluid" src="./imagenes/medalla.jpg" alt="medalla" style="max-width: 40%; height: auto;">
             <?php
-                if (isset($_SESSION['usuario']) && $tipoUsuario === 'administrador') {
-                    echo '<a href="editarNoticia.php"  class="btn btn-primary">Editar Noticia</a>';
+                if (isset($_SESSION['usuario']) && $tipoUsuario === 'administrador') { //Si se inició sesión y el tipo de usuario es un administrador, entonces se le permite editar la noticia
+                    echo '<a href="editarNoticia.php"  class="btn btn-primary">Editar Noticia</a>'; //muestro el boton de editar noticia
                 }
             ?>
             <h3><?php echo $titulo; ?></h3>

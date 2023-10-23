@@ -1,6 +1,6 @@
 <?php
     // Incluye el archivo de conexión para acceder a la variable $BaseSTOCK
-    include_once("../backend/clases/Usuario.php");
+    require_once("../backend/clases/Usuario.php");
     session_start();
 
     // Inicializa las variables
@@ -51,18 +51,18 @@
     $formulario = new Usuario('', '', '', ''); //
     
     if ($_SERVER['REQUEST_METHOD'] === 'POST') {
-        // Recupera los datos del formulario
-        $idNoticia = isset($_POST['idNoticia']) ? $_POST['idNoticia'] : null;
+        // recupero los datos del formulario
+        $idNoticia = isset($_POST['idNoticia']) ? $_POST['idNoticia'] : null; //Verifico si existe un valor en IDnoticia, si no existe, el valor q se le agrega es null
         $nuevo_titulo = isset($_POST['nuevo_titulo']) ? $_POST['nuevo_titulo'] : null;
         $nuevo_texto = isset($_POST['nuevo_texto']) ? $_POST['nuevo_texto'] : null;
     
         
-        if (empty($nuevo_titulo) && empty($nuevo_texto)) {
+        if (empty($nuevo_titulo) && empty($nuevo_texto)) { //Si se quiere actualizar la noticia sin ingresar un titulo ni una descripcion, no permito que se envie
             echo "Debes ingresar al menos un título o una descripción para actualizar la noticia.";
         } else {
-            // Llama al método para actualizar la noticia solo si se proporcionan datos válidos
+            // invoco al metodo para actualizar la noticia solo si se proporcionan datos correctos
             $formulario->actualizarNoticia($idNoticia, $nuevo_titulo, $nuevo_texto);
-            header("Location: noticia1.php");
+            header("Location: noticias.php"); //Vuelvo a la seccion noticias.php luego de que se actualiza la noticia
         }
 
 
@@ -93,7 +93,7 @@
     <div id="modal-container"></div>
     <!-- Formulario de edición de la noticia -->
     <form method="POST" style="padding-bottom: 21%">
-    <div class="form-group" >
+        <div class="form-group" >
             <label for="idNoticia" class="text-white">Ingrese el ID de la noticia a editar:</label>
             <input type="number" class="form-control" id="idNoticia" name="idNoticia" value="">
         </div>

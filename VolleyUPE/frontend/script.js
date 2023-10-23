@@ -110,10 +110,10 @@ function mostrarRanking(){
         filas.forEach(fila => {
             let tipo = fila.getAttribute('data-tipo-competencia');
     
-            if (tipoCompetencia === 'todas' || tipo === tipoCompetencia) {
+            if (tipoCompetencia === 'todas' || tipo === tipoCompetencia) { //Si la opcion del select es "todas" o alguna competencia, se mostrará respectivamente los equipos que correspondan
                 fila.style.display = '';
             } else {
-                fila.style.display = 'none';
+                fila.style.display = 'none'; //Sino, no se muestra ninguno xd
             }
         });
     }
