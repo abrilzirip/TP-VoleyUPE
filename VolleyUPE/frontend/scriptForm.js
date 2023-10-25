@@ -44,7 +44,6 @@ function Validaciones(){
   // aca obtengo la fecha de la actualidad
   let fechaActual = new Date();
 
- 
   let diferencia = fechaActual - fechaNacimiento; // la diferencia entre la fecha actual y la fecha ingresada 
 
   // convierto la diferencia en años

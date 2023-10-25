@@ -36,16 +36,16 @@
             <div class="collapse navbar-collapse" id="navbarNav">
                 <ul class="navbar-nav">
                     <li class="nav-item">
-                        <a class="nav-link" href="agregarJugador.html">Agregar Jugador</a>
+                        <a class="nav-link" href="agregarJugador.php">Agregar Jugador</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="eliminarJugador.html">Eliminar Jugador</a>
+                        <a class="nav-link" href="eliminarJugador.php">Eliminar Jugador</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="agregarUsuario.html">Agregar Usuario Especial</a>
+                        <a class="nav-link" href="agregarUsuario.php">Agregar Usuario Especial</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="eliminarUsuario.html">Eliminar Usuario</a>
+                        <a class="nav-link" href="eliminarUsuario.php">Eliminar Usuario</a>
                     </li>
                 </ul>
             </div>
