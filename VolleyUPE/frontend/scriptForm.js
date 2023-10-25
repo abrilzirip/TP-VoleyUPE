@@ -6,10 +6,15 @@ function inicio(){
 function enviarFormulario(evento) {
   evento.preventDefault();
   if (Validaciones()) {
-      console.log('envio existoso')
+    limpiarFormulario();
+
+    console.log('envio existoso')
   }
 }
 
+function limpiarFormulario() {
+  document.getElementById("formulario").reset();
+}
 
 function Validaciones(){
 
@@ -34,7 +39,7 @@ function Validaciones(){
 
   //////////Validar Edad
 
-  let fechaNacimiento = new Date(document.getElementById('edad').value); // aca obtengo el valor ingresado en el formulario
+  let fechaNacimiento = new Date(document.getElementById('fecha_edad').value); // aca obtengo el valor ingresado en el formulario
 
   // aca obtengo la fecha de la actualidad
   let fechaActual = new Date();

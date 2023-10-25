@@ -137,8 +137,8 @@ $rol = $usuario->validarRolUsuario(); // Debes implementar esta función según 
                     </div>
     
                     <div class="modal-body">
-                        <label for="edad">Fecha de Nacimiento:</label>
-                        <input type="date" required class="form-control" id="edad" name="edad">
+                        <label for="fecha_edad">Fecha de Nacimiento:</label>
+                        <input type="date" required class="form-control" id="fecha_edad" name="fecha_edad">
                         <div class="invalid-feedback">Fecha de nacimiento inválida.</div>
                     </div>
     
