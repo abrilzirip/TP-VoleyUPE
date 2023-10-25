@@ -24,7 +24,7 @@ if($_SERVER["REQUEST_METHOD"] == "POST")
    $resultado = $jugador->registrar();
    if($resultado == true)
    {
-    header('Location: ../frontend/controlAdmin.html');
+    header('Location: ../frontend/controlAdmin.php');
     exit();
    }
    else

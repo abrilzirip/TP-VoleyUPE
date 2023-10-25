@@ -11,7 +11,7 @@ if($_SERVER["REQUEST_METHOD"] == "POST")
    $resultado = $jugador->eliminarNombreYApellido($nombre, $apellido);
    if($resultado == true)
    {
-    header('Location: ../frontend/controlAdmin.html');
+    header('Location: ../frontend/controlAdmin.php');
     exit();
    }
 }
