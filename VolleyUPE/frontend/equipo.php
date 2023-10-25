@@ -16,8 +16,7 @@
     <div id="fondo"></div>
  <!--barra de navegacion-->
     <div id="navbar-container"></div><br>
- <!--modales-->
-    <div id="modal-container"></div>
+
 
     <div id="jugadores"  class="container p-5 my-5 border">
        <div class="container-titulo">
@@ -28,7 +27,7 @@
   <!--ficha jugadores-->
         <div class="row">
             <div class="col-md-2">
-                <img class="Fichasimg" src="imagenes/imgFichas/defensor.jfif" alt="">
+                <img class="Fichasimg" src="../imagenes/jugadores/defensor.jfif" alt="">
             </div>
             <div class="col-md-4">
                 <div class="txtF">
@@ -41,7 +40,7 @@
             </div>
     <!--2-->
             <div class="col-md-2">
-                <img class="Fichasimg" src="imagenes/imgFichas/volante.jfif" alt="">
+                <img class="Fichasimg" src="../imagenes/jugadores/volante.jfif" alt="">
             </div>
             <div class="col-md-4">
                 <div class="txtF">
@@ -53,7 +52,7 @@
             </div><br>
     <!--3-->
             <div class="col-md-2">
-                <img class="Fichasimg" src="imagenes/imgFichas/armador.jfif" alt="">
+                <img class="Fichasimg" src="../imagenes/jugadores/armador.jfif" alt="">
             </div>
             <div class="col-md-4">
                 <div class="txtF">
@@ -67,7 +66,7 @@
 
     <!--4-->
             <div class="col-md-2">
-                <img class="Fichasimg" src="imagenes/imgFichas/jugador3.jfif" alt="">
+                <img class="Fichasimg" src="../imagenes/jugadores/jugador3.jfif" alt="">
             </div>
             <div class="col-md-4">
                 <div class="txtF">
@@ -81,7 +80,7 @@
 
     <!--5-->
             <div class="col-md-2">
-                <img class="Fichasimg" src="imagenes/imgFichas/ultimo.jfif" alt="">
+                <img class="Fichasimg" src="../imagenes/jugadores/ultimo.jfif" alt="">
             </div>
             <div class="col-md-4">
                 <div class="txtF">
@@ -93,7 +92,7 @@
             </div>
     <!--6-->
             <div class="col-md-2">
-                <img class="Fichasimg" src="imagenes/imgFichas/volante.jfif" alt="">
+                <img class="Fichasimg" src="../imagenes/jugadores/volante.jfif" alt="">
             </div>
             <div class="col-md-4">
                 <div class="txtF">

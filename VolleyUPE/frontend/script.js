@@ -1,27 +1,4 @@
-/////////////////// Cargar los modales desde modales.html utilizando JavaScript
-document.addEventListener('DOMContentLoaded', function () {
-    // Obtener el contenedor de modales
-    let modalContainer = document.getElementById('modal-container');
 
-    // Realizar una solicitud GET a 'modales.html'
-    fetch('modales.html')
-        .then(response => {
-            // Verificar si la respuesta es exitosa
-            if (!response.ok) {
-                throw new Error('La solicitud no se pudo completar correctamente.');
-            }
-            // Convertir la respuesta a texto
-            return response.text();
-        })
-        .then(data => {
-            // Insertar el contenido de 'modales.html' en el contenedor
-            modalContainer.innerHTML = data;
-        })
-        .catch(error => {
-            // Manejar errores si ocurren
-            console.error('Error al cargar los modales:', error);
-        });
-});
 
 /////////////////// Cargar la barra de navegacion desde navbar.html utilizando JavaScript
 let navbarContainer = document.getElementById('navbar-container');
@@ -132,5 +109,3 @@ function mostrarRanking(){
 }
 
 //////////////////////////////////////
-//Logica Validacion usuario
-

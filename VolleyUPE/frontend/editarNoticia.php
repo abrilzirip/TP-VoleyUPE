@@ -3,7 +3,7 @@
     require_once("../backend/clases/Usuario.php");
     session_start();
 
-    // Inicializa las variables
+    // nota a futuro logica para consulta de datos, reemplazar una mejor logica de modelos, vistas, etc*
     $correoUsuario = $passwordUsuario = $fechaNacimientoUsuario = $idPerfilUsuario = '';
     
     if (isset($_SESSION['usuario'])) {
@@ -42,7 +42,7 @@
     // Validacion para que no se pueda acceder a la edicion a menos que se haya iniciado sesion y sea un administrador.
 
     if (!isset($_SESSION['usuario']) || $tipoUsuario === 'usuario') {
-        // Si el usuario no ha iniciado sesión, puedes redirigirlo o mostrar un mensaje de error
+        //
         echo "Debes iniciar sesión y/o ser administrador para editar noticias.";
         exit();
     }
@@ -64,8 +64,6 @@
             $formulario->actualizarNoticia($idNoticia, $nuevo_titulo, $nuevo_texto);
             header("Location: noticias.php"); //Vuelvo a la seccion noticias.php luego de que se actualiza la noticia
         }
-
-
     }
 // Resto del código HTML que muestra el formulario
 ?>

@@ -25,16 +25,41 @@ class Usuario
     }
     public function registrar()
     {
-       $sql = "INSERT INTO usuario(correo,password,fecha_nacimiento, id_perfil) VALUES('$this->correo','$this->password','$this->fechaNacimiento','$this->perfil')";
-       if($this->conexion->query($sql)) //Consulta que inserta los valores del usuario en la BBDD
-       {
-        return true;
-       }
-       else
-       {
-        return false;
-       }
+        // Validar que el correo no esté en uso
+        $correoExistente = $this->verificarCorreoExistente($this->correo); //correo existente guarda el valor retornado por el metodo
+        if ($correoExistente) { //
+            return "El correo ya está en uso."; //
+        }
+
+        $sql = "INSERT INTO usuario(correo, password, fecha_nacimiento, id_perfil) VALUES('$this->correo', '$this->password', '$this->fechaNacimiento', '$this->perfil')";
+
+        if ($this->conexion->query($sql)) {
+            return "Se registro nuevo usuario"; // Se ha registrado con éxito
+        } else {
+            return "Error al registrar, el correo ingresado ya existe"; // Hubo un error al registrar
+        }
     }
+
+    private function verificarCorreoExistente($correo)
+    {
+        $sql = "SELECT COUNT(*) as total FROM usuario WHERE correo = '$correo'"; //consulta para encontrar que no haya correos iguales
+        // ejecuto la consulta
+        $resultado = $this->conexion->query($sql);
+    
+        // primero compruebo si es que devolvió valores mi consulta
+        if ($resultado->num_rows > 0) {
+            // la fila del resultado de la consulta lo tomo como un array asociativo
+            $fila = $resultado->fetch_assoc();
+    
+            //si el campo "total" en mi fila es mayor a 0, entonces significa que el correo que se ingresó ya existe
+            return $fila['total'] > 0;
+        }
+
+        //si no hay correos iguales, entonces retorno falso :D
+        return false;
+    }
+
+
 
     public function consultar($correo, $password)
     {
@@ -51,42 +76,40 @@ class Usuario
     
 
     public function validarRolUsuario() {
-    
         // Verifica si el usuario ha iniciado sesión
         if (isset($_SESSION['usuario'])) {
-    
             // Obtiene el correo del usuario desde la sesión
             $correo = $_SESSION['usuario'];
     
-            // realizo una consulta para obtener el ID_PERFIL del usuario
+            // Realiza una consulta para obtener el ID_PERFIL del usuario
             $consulta = "SELECT ID_PERFIL FROM USUARIO WHERE CORREO = '$correo'";
             $resultado = $this->conexion->query($consulta);
-
     
-            // valido si se encontraron resultados al igual que como hice en la funcion consultar
+            // Valida si se encontraron resultados, al igual que en la función consultar
             if ($resultado->num_rows > 0) {
                 $fila = $resultado->fetch_assoc();
                 $idPerfil = $fila['ID_PERFIL'];
     
-                // validacion de si el usuario es un administrador (ID_PERFIL = 1)
+                // Definir roles en base a los ID_PERFIL
                 if ($idPerfil == 1) {
-                    // El usuario es un administrador, puedes realizar acciones específicas para administradores aquí
-                    $rolPerfil = "administrador";
-                    echo 'Administrador';
-                } else {
-                    // El usuario no es un administrador
+                    // El usuario es un administrador
                     $rolPerfil = "usuario";
-                    echo 'Usuario';
+                } else if ($idPerfil == 2) {
+                    // El usuario es un administrador de contenido
+                    $rolPerfil = "Admincontenido";
+                } else if($idPerfil == 3){
+                    // 
+                    $rolPerfil = 'administrador';
                 }
-                // Cierra la conexión a la base de datos    
+                // Cierra la conexión a la base de datos
                 return $rolPerfil;
             } else {
-                // no existe el usuario en la base de datos
-                return 'usuario_no_encontrado';
+                // No se encontró el usuario en la base de datos
+                return 'Usuario_no_encontrado';
             }
         } else {
-            //  no se ha iniciado sesión
-            return 'usuario_no_autenticado';
+            // No se ha iniciado sesión
+            return 'Usuario_no_autenticado';
         }
     }
 
@@ -112,6 +135,10 @@ class Usuario
             }
         }
         ///////////
+        public function eliminarPorCorreo($correoUsuario) {
+            $sql = "DELETE FROM usuario WHERE correo = '$correoUsuario'";
+            return $this->conexion->query($sql);
+        }
 
 
 

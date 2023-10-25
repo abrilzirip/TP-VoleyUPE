@@ -1,41 +1,13 @@
 <?php
-    require_once('../backend/clases/Usuario.php');
+    require_once("../backend/clases/Usuario.php");
 
     session_start();
+
     // inicializo las variables en ''
     $correoUsuario = $passwordUsuario = $fechaNacimientoUsuario = $idPerfilUsuario = '';
     // aca me conecto a la bbdd
-    $conexion = new mysqli("localhost", "root", "", "bbdd_voleyup");
-    
-    if ($conexion->connect_error) {
-        die("Error en la conexión a la base de datos: " . $conexion->connect_error);
-    }
-    
-    if (isset($_SESSION['usuario'])) {
-        // tomo el correo del usuario desde la sesion iniciada
-        $correoUsuario = $_SESSION['usuario'];
-    
-        $sql = "SELECT * FROM usuario WHERE correo = '$correoUsuario'"; //consulta para obtener el usuario
-        $resultado = $conexion->query($sql);
-    
-        if ($resultado->num_rows > 0) {
-            $fila = $resultado->fetch_assoc();
-            // Asigna los valores de la base de datos a las variables correspondientes
-            $correoUsuario = $fila["correo"];
-            $passwordUsuario = $fila["password"];
-            $fechaNacimientoUsuario = $fila["fecha_nacimiento"];
-            $idPerfilUsuario = $fila["id_perfil"];
-        } else {
-            echo "Usuario no encontrado en la base de datos.";
-        }
-    
-    } else {
-        // El usuario no ha iniciado sesión
-        // mostrar mensaje de error a futuro*
-    }
-    
-    //uso los valores que obtuve de la bbdd
-    $usuario = new Usuario($correoUsuario, $passwordUsuario, $fechaNacimientoUsuario, $idPerfilUsuario);
+     $conexion = new mysqli("localhost", "root", "", "bbdd_voleyup");
+    $usuario = new Usuario("","","","");
     $tipoUsuario = $usuario->validarRolUsuario(); //valido que el tipo de usuario sea administrador para mostrar en la pagina el boton para editar la noticia
     
 
@@ -72,19 +44,17 @@
     <!-- Incluyo la barra de navegación utilizando JavaScript -->
     <div id="navbar-container"></div>
 
-    <!-- Modales de inicio de sesion y registro, los incluyo ocn javascript -->
-    <div id="modal-container"></div>
 
         <div class="text-center"> 
-        <img class="imagen img-fluid" src="./imagenes/medalla.jpg" alt="medalla" style="max-width: 40%; height: auto;">
+        <img class="imagen img-fluid" src="../imagenes/noticias/medalla.jpg" alt="medalla" style="max-width: 40%; height: auto;">
             <?php
-                if (isset($_SESSION['usuario']) && $tipoUsuario === 'administrador') { //Si se inició sesión y el tipo de usuario es un administrador, entonces se le permite editar la noticia
+                if (isset($_SESSION['usuario']) && $tipoUsuario === 'Admincontenido') { //Si se inició sesión y el tipo de usuario es un administrador, entonces se le permite editar la noticia
                     echo '<a href="editarNoticia.php"  class="btn btn-primary">Editar Noticia</a>'; //muestro el boton de editar noticia
                 }
             ?>
             <h3><?php echo $titulo; ?></h3>
             <p class="text-white"><?php echo $parrafo; ?></p>
-            <img class="imagen img-fluid" src="./imagenes/juar.jpg" alt="juar" style="max-width: 40%; height: auto;">
+            <img class="imagen img-fluid" src="../imagenes/noticias/juar.jpg" alt="juar" style="max-width: 40%; height: auto;">
         </div>
     <footer>
         <!-- Incluyo el footer utilizando JavaScript -->

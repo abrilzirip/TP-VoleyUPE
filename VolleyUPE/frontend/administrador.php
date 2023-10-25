@@ -1,3 +1,19 @@
+<?php
+
+    require_once("../backend/clases/Usuario.php");
+    session_start();
+
+        $usuario = new Usuario("","","","");
+        $tipoUsuario = $usuario->validarRolUsuario();
+
+    if (!isset($_SESSION['usuario']) || $tipoUsuario === 'usuario') {
+        //
+        echo "Debes iniciar sesión y/o ser administrador para administrar contenido.";
+        exit();
+    }
+
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -12,6 +28,8 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
 </head>
 <body>
+
+
     <div id="fondo"></div>
     <!-- Incluyo la barra de navegación utilizando JavaScript -->
     <div id="navbar-container"></div>

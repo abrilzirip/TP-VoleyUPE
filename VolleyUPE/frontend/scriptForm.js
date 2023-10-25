@@ -1,52 +1,17 @@
 function inicio(){
-  document.getElementById("formulario").addEventListener('submit', enviarFormulario);
-  document.getElementById("edad").addEventListener('change', MostrarAutorizada);
+  document.getElementById("registrarUsuario").addEventListener('submit', enviarFormulario);
 }
 
 
 function enviarFormulario(evento) {
   evento.preventDefault();
   if (Validaciones()) {
-      mostrarModal();
+      console.log('envio existoso')
   }
 }
 
-
-function mostrarModal() {
-  let exampleModal = new bootstrap.Modal(document.getElementById('gracias'));
-  exampleModal.show();
-  let modalTexto = document.getElementById("textoModal");
-  let nombreInput = document.getElementById("nombre").value;
-  modalTexto.innerHTML = "Gracias por registrarse, " + nombreInput;
-  limpiarFormulario();
-   
-}
-////////////////////////
-
-function MostrarAutorizada(){
-   //Muestro los equipos del grupo FAC
-  let edadAutorizada = document.getElementById('edad');
-  let numeroEdad = edadAutorizada.value;
-  if(numeroEdad >=14 && numeroEdad <18){
-      document.getElementById("autorizar").classList.remove("AutorizadoOculto"); //agrego la clase que hace visible los grupos
-  }else{
-      document.getElementById("autorizar").classList.add("AutorizadoOculto"); //agrego la clase que hace visible los grupos
-
-  }
-}
-
-//////////
-function limpiarFormulario() {
-  document.getElementById("formulario").reset();
-}
-
-///////////////////
 
 function Validaciones(){
-
-
-  let mensajeNombre = document.getElementById("nombre");
-  mensajeNombre.classList.remove("is-invalid");
 
   let mensajeMail = document.getElementById("email");
   mensajeMail.classList.remove("is-invalid");
@@ -56,60 +21,37 @@ function Validaciones(){
 
 
 
-  let inputTexto = document.getElementById("nombre").value;
-  let palabras = inputTexto.split(/\s+/); 
-  let RegularLetras=/^[a-zA-ZáéíóúÁÉÍÓÚ ]+$/;
-
-  //////////Validar cantidad de palabras
-
-  if (palabras.length !== 2 ){
-          console.log('Debes ingresar nombre y apellido solamente.');
-          mensajeNombre.classList.add("is-invalid");
-
-          return false;
-  }  
-
-  //////////Validar el rango de ambas palabras
-
-  for (let cadena of palabras){
-      if(cadena.length < 3 || cadena.length > 15){
-          mensajeNombre.classList.add("is-invalid");
-
-          console.log('MAL RANGO PALABRAS');
-          return false;
-      }
-  }
-
-  /////////////Validar caracteres
-
-  if(!RegularLetras.test(inputTexto)){
-      mensajeNombre.classList.add("is-invalid");
-      console.log('invalido');
-  }
-
-
   ////////////////////Validar Email
 
   let mail = document.getElementById("email").value;
   let regularMail = /^[^@]+@[^@]+\.[a-zA-Z]{2,}$/;
   
   if(!regularMail.test(mail)){
-      mensajeMail.classList.add("is-invalid");
-      console.log('caracteres invalidos en el formato mail');
+      alert('El correo ingresado no cumple un formato valido')
       return false;
   }
 
 
   //////////Validar Edad
 
-  let edad = document.getElementById("edad");
-  let num = parseInt(edad.value);
+  let fechaNacimiento = new Date(document.getElementById('edad').value); // aca obtengo el valor ingresado en el formulario
 
-  if (!isNaN(num) && num < 14 || num > 100) {
-      mensajeEdad.classList.add("is-invalid");
-      console.log('ERROR EDAD');
+  // aca obtengo la fecha de la actualidad
+  let fechaActual = new Date();
+
+ 
+  let diferencia = fechaActual - fechaNacimiento; // la diferencia entre la fecha actual y la fecha ingresada 
+
+  // convierto la diferencia en años
+  let edad = Math.floor(diferencia / (1000 * 60 * 60 * 24 * 365.25)); //Math.floor para redondear hacia abajo el resto de la division matematica
+
+  if (edad < 16) {
+      // si la edad es menor a 16 años, muestro un mensaje "alert" en la pagina indicando que no pudo iniciar sesion, y el error
+      alert('Para registrarte en la pagina de VOLEY UPE debes tener almenos 16 años');
       return false;
   }
+
+  // La edad es mayor o igual a 16 años
   return true;
 }
 window.onload = inicio;

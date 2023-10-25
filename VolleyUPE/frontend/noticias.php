@@ -18,11 +18,10 @@
     <!-- Barra de Navegación -->
     <div id="navbar-container"></div><br>
 
-    <!-- Modales de inicio de sesion y registro, los incluyo ocn javascript -->
-    <div id="modal-container"></div>
+
 
     <div class="noticia-principal">
-        <a title="noticiaPrincipal" href="noticiaPrincipal.php"><img class="img-fluid" src="./imagenes/upevsunqui.jpg" alt="upevsunqui"></a>
+        <a title="noticiaPrincipal" href="noticiaPrincipal.php"><img class="img-fluid" src="../imagenes/noticias/upevsunqui.jpg" alt="upevsunqui"></a>
         <div class="texto-superpuesto">
             <h3>EQUIPO UPE vs. UNQUI</h3>
             <p>Debido a la baja de los titulares, los suplentes...</p>
@@ -44,7 +43,7 @@
                 <!-- Noticia 1 -->
                 <div class="col-md-6">
                     <div class="card mb-4">
-                    <a title="noticia1" href="noticia1.php"><img class="imagen" src="./imagenes/medalla.jpg" alt="medalla"></a>
+                    <a title="noticia1" href="noticia1.php"><img class="imagen" src="../imagenes/noticias/medalla.jpg" alt="medalla"></a>
                         <div class="texto-superpuesto">
                             <h3>La UPE presente - JUAR 2023</h3>
                             <p>La Secretaria de Extensión y Bienestar Universitario de la UPE, Lic. Ayelén Rocha...</p>
@@ -55,7 +54,7 @@
                 <!-- Noticia 2 -->
                 <div class="col-md-6">
                     <div class="card mb-4">
-                        <a title="noticia2" href="noticia2.php"><img class="imagen" src="./imagenes/jupla.jpg" alt="jupla"></a>
+                        <a title="noticia2" href="noticia2.php"><img class="imagen" src="../imagenes/noticias/jupla.jpg" alt="jupla"></a>
                         <div class="texto-superpuesto">
                             <h3>La UPE en los Juegos JUPLA 2022</h3>
                             <p>La UPE participó de la edición 2022 de los Juegos Universitarios de Playa (JUPLA),...</p>
@@ -66,7 +65,7 @@
                 <!-- Noticia 3 -->
                 <div class="col-md-6">
                     <div class="card mb-4">
-                        <a title="noticia3" href="noticia3.php"><img class="imagen" src="./imagenes/2dolugar.png" alt="2dolugar"></a>
+                        <a title="noticia3" href="noticia3.php"><img class="imagen" src="../imagenes/noticias/2dolugar.png" alt="2dolugar"></a>
                         <div class="texto-superpuesto">
                             <h3>Reconocimiento a Deportistas de la UPE</h3>
                             <p>En el día de hoy se reconoció a los y las deportistas de la Universidad Provincial de Ezeiza...</p>
@@ -77,7 +76,7 @@
                 <!-- Noticia 4 -->
                 <div class="col-md-6">
                     <div class="card mb-4">
-                        <a title="noticia4" href="noticia4.php"><img class="imagen" src="./imagenes/salud.jpg" alt="salud"></a>
+                        <a title="noticia4" href="noticia4.php"><img class="imagen" src="../imagenes/noticias/salud.jpg" alt="salud"></a>
                         <div class="texto-superpuesto">
                             <h3>Semana de la Salud y el Deporte en la UPE</h3>
                             <p>La Semana de la Salud y el Deporte se lleva a cabo en la Universidad Provincial de Ezeiza...</p>
